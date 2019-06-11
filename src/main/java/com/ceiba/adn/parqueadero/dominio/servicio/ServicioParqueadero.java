@@ -16,6 +16,8 @@ public class ServicioParqueadero {
 	private static final String MENSAJE_NO_HAY_CUPO = "En el momento no hay cupo para el vehiculo";
 	private static final int MAXIMO_MOTOS = 10;
 	private static final int MAXIMO_CARROS = 20;
+	private static final String TIPO_VEHICULO_MOTO = "moto";
+	private static final String TIPO_VEHICULO_CARRO = "carro";
 
 	@Autowired
 	private PuertoRepositorioParqueadero repositorioParqueadero;
@@ -37,8 +39,8 @@ public class ServicioParqueadero {
 	private void validarCantidadVehiculosPorTipo(String tipoVehiculo) {
 		int cantidad = repositorioParqueadero.contarVehiculosPorTipo(tipoVehiculo);
 
-		if ((tipoVehiculo.equals("moto") && cantidad == MAXIMO_MOTOS)
-				|| (tipoVehiculo.equals("carro") && cantidad == MAXIMO_CARROS)) {
+		if ((tipoVehiculo.equals(TIPO_VEHICULO_MOTO) && cantidad == MAXIMO_MOTOS)
+				|| (tipoVehiculo.equals(TIPO_VEHICULO_CARRO) && cantidad == MAXIMO_CARROS)) {
 			throw new ExcepcionParqueadero(MENSAJE_NO_HAY_CUPO);
 		}
 	}
