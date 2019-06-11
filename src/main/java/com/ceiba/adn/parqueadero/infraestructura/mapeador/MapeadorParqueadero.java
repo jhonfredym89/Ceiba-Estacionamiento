@@ -6,7 +6,7 @@ import com.ceiba.adn.parqueadero.dominio.modelo.Cobro;
 import com.ceiba.adn.parqueadero.infraestructura.entidad.CobroEntidad;
 
 @Component
-public final class MapeadorParqueadero {
+public class MapeadorParqueadero {
 	public Cobro convertirAdominio(CobroEntidad cobroEntidad) {
 		Cobro cobro;
 		if (cobroEntidad == null) {
