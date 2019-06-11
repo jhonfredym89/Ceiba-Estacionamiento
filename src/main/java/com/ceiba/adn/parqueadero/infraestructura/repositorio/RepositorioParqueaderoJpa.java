@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 import com.ceiba.adn.parqueadero.infraestructura.entidad.CobroEntidad;
 
 public interface RepositorioParqueaderoJpa extends CrudRepository<CobroEntidad, Integer> {
-	@Query(value = "SELECT count(*) FROM cobroEntidad c WHERE c.tipoVehiculo = :tipoVehiculo AND c.fechaSalida IS NOT NULL", nativeQuery = true)
+	@Query("SELECT COUNT(*) FROM CobroEntidad c WHERE c.tipoVehiculo = :tipoVehiculo AND c.fechaSalida IS NOT NULL")
 	int contarVehiculosPorTipo(@Param("tipoVehiculo") String tipoVehiculo);
 }
