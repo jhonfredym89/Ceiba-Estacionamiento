@@ -18,7 +18,7 @@ import com.ceiba.adn.parqueadero.testdatabuilder.ParqueaderoTestDataBuilder;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ServicioParqueaderoTest {
-	private static final String MENSAJE_INGRESO_NO_AUTORIZADO = "El vehiculo no puede ingresar el día de hoy";
+	private static final String MENSAJE_INGRESO_NO_AUTORIZADO = "El vehiculo no puede ingresar el dia de hoy";
 	private static final String MENSAJE_NO_HAY_CUPO = "En el momento no hay cupo para el vehiculo";
 
 	@InjectMocks
