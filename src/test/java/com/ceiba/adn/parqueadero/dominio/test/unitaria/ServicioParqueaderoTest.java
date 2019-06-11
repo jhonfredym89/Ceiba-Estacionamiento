@@ -1,6 +1,7 @@
 package com.ceiba.adn.parqueadero.dominio.test.unitaria;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 
@@ -56,6 +57,22 @@ public class ServicioParqueaderoTest {
 			assertEquals(MENSAJE_NO_HAY_CUPO, e.getMessage());
 		}
 	}
+	
+	@Test
+	public void parqueaderoSinCupoParaCarroTest() {
+		// Arrange
+		ParqueaderoTestDataBuilder parqueaderoTestDataBuilder = new ParqueaderoTestDataBuilder().conTipoVehiculo("carro");
+		Cobro cobro = parqueaderoTestDataBuilder.build();
+		when(repositorioParqueadero.contarVehiculosPorTipo("carro")).thenReturn(20);
+		// Act
+		try {
+			servicioParqueadero.ingresarVehiculo(cobro);
+			fail();
+		} catch (ExcepcionParqueadero e) {
+			// Assert
+			assertEquals(MENSAJE_NO_HAY_CUPO, e.getMessage());
+		}
+	}
 
 	@Test
 	public void ingresoVehiculoTest() {
@@ -66,6 +83,6 @@ public class ServicioParqueaderoTest {
 		// Act
 		servicioParqueadero.ingresarVehiculo(cobro);
 		// Assert
-		assertEquals(1, cobro.getId());
+		assertTrue(cobro.getId() > 0);
 	}
 }
