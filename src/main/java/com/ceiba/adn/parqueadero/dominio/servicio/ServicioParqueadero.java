@@ -12,7 +12,7 @@ import com.ceiba.adn.parqueadero.dominio.puerto.PuertoRepositorioParqueadero;
 @Service
 public class ServicioParqueadero {
 	private static final String LETRA_DE_PLACA_CON_RESTRICCION = "A";
-	private static final String MENSAJE_INGRESO_NO_AUTORIZADO = "El vehiculo no puede ingresar el día de hoy";
+	private static final String MENSAJE_INGRESO_NO_AUTORIZADO = "El vehiculo no puede ingresar el dia de hoy";
 	private static final String MENSAJE_NO_HAY_CUPO = "En el momento no hay cupo para el vehiculo";
 	private static final int MAXIMO_MOTOS = 10;
 	private static final int MAXIMO_CARROS = 20;
