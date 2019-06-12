@@ -1,6 +1,5 @@
 package com.ceiba.adn.parqueadero.infraestructura.adaptador;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ceiba.adn.parqueadero.dominio.modelo.Cobro;
@@ -12,10 +11,14 @@ import com.ceiba.adn.parqueadero.infraestructura.repositorio.RepositorioParquead
 @Component
 public class AdaptadorRepositorioParqueadero implements PuertoRepositorioParqueadero {
 
-	@Autowired
 	private RepositorioParqueaderoJpa repositorioParqueaderoJpa;
-	@Autowired
 	private MapeadorParqueadero mapeadorParqueadero;
+
+	public AdaptadorRepositorioParqueadero(RepositorioParqueaderoJpa repositorioParqueaderoJpa,
+			MapeadorParqueadero mapeadorParqueadero) {
+		this.repositorioParqueaderoJpa = repositorioParqueaderoJpa;
+		this.mapeadorParqueadero = mapeadorParqueadero;
+	}
 
 	@Override
 	public int contarVehiculosPorTipo(String tipoVehiculo) {

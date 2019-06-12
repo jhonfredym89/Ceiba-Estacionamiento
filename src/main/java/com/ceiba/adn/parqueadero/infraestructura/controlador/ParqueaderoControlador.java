@@ -12,8 +12,12 @@ import com.ceiba.adn.parqueadero.aplicacion.manejador.ParqueaderoManejador;
 @RestController
 @RequestMapping("/parqueadero")
 public class ParqueaderoControlador {
-	@Autowired
 	private ParqueaderoManejador parqueaderoManejador;
+
+	@Autowired
+	public ParqueaderoControlador(ParqueaderoManejador parqueaderoManejador) {
+		this.parqueaderoManejador = parqueaderoManejador;
+	}
 
 	@PostMapping("/ingreso")
 	public void ingresarVehiculo(@RequestBody CobroDto cobroDto) {

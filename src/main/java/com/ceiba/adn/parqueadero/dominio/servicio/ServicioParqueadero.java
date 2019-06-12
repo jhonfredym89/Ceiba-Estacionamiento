@@ -2,14 +2,10 @@ package com.ceiba.adn.parqueadero.dominio.servicio;
 
 import java.util.Calendar;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.ceiba.adn.parqueadero.dominio.excepcion.ExcepcionParqueadero;
 import com.ceiba.adn.parqueadero.dominio.modelo.Cobro;
 import com.ceiba.adn.parqueadero.dominio.puerto.PuertoRepositorioParqueadero;
 
-@Service
 public class ServicioParqueadero {
 	private static final String LETRA_DE_PLACA_CON_RESTRICCION = "A";
 	private static final String MENSAJE_INGRESO_NO_AUTORIZADO = "El vehiculo no puede ingresar el dia de hoy";
@@ -19,8 +15,11 @@ public class ServicioParqueadero {
 	private static final String TIPO_VEHICULO_MOTO = "moto";
 	private static final String TIPO_VEHICULO_CARRO = "carro";
 
-	@Autowired
 	private PuertoRepositorioParqueadero repositorioParqueadero;
+
+	public ServicioParqueadero(PuertoRepositorioParqueadero repositorioParqueadero) {
+		this.repositorioParqueadero = repositorioParqueadero;
+	}
 
 	public Cobro ingresarVehiculo(Cobro cobro) {
 		validarIngresoPorPlaca(cobro.getPlaca());

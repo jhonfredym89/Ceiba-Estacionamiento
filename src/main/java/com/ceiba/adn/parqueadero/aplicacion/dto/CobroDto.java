@@ -1,6 +1,6 @@
 package com.ceiba.adn.parqueadero.aplicacion.dto;
 
-import java.time.LocalDate;
+import java.util.Calendar;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,5 +13,5 @@ public class CobroDto {
 	private String tipoVehiculo;
 	private String placa;
 	private int cilindraje;
-	private LocalDate fechaIngreso;
+	private Calendar fechaIngreso;
 }
