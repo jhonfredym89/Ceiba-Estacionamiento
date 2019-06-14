@@ -10,5 +10,6 @@ public interface RepositorioParqueaderoJpa extends CrudRepository<CobroEntidad, 
 	@Query("SELECT COUNT(*) FROM CobroEntidad c WHERE c.tipoVehiculo = :tipoVehiculo AND c.fechaSalida IS NULL")
 	int contarVehiculosPorTipo(@Param("tipoVehiculo") String tipoVehiculo);
 
-	CobroEntidad findByPlaca(String placa);
+	@Query("SELECT c FROM CobroEntidad c WHERE c.placa = :placa")
+	CobroEntidad buscarPorPlaca(@Param("placa") String placa);
 }

@@ -26,7 +26,7 @@ public class ServicioParqueadero {
 	public Cobro ingresarVehiculo(Cobro cobro) {
 		validarIngresoPorPlacaYfecha(cobro.getPlaca(), cobro.getFechaIngreso());
 		validarCantidadVehiculosPorTipo(cobro.getTipoVehiculo());
-		return repositorioParqueadero.ingresarVehiculo(cobro);
+		return repositorioParqueadero.ingresarYactualizarVehiculo(cobro);
 	}
 
 	private void validarIngresoPorPlacaYfecha(String placa, Calendar fechaIngreso) {
@@ -47,15 +47,20 @@ public class ServicioParqueadero {
 
 	public long retirarVehiculo(final String placa) {
 		Cobro cobro = repositorioParqueadero.buscarVehiculoPorPlaca(placa);
-		CobroParqueadero cobroParqueadero;
 
 		if (cobro == null) {
 			throw new ExcepcionParqueadero(MENSAJE_VEHICULO_NO_EXISTE);
 		}
+		cobrar(cobro);
+		repositorioParqueadero.ingresarYactualizarVehiculo(cobro);
+
+		return cobro.getValor();
+	}
+
+	private void cobrar(Cobro cobro) {
+		CobroParqueadero cobroParqueadero;
 		cobro.setFechaSalida(Calendar.getInstance());
 		cobroParqueadero = ParqueaderoFabrica.obtenerInstancia().obtenerTipoVehiculo(cobro.getTipoVehiculo());
 		cobroParqueadero.cobrar(cobro);
-
-		return cobro.getValor();
 	}
 }

@@ -26,14 +26,14 @@ public class AdaptadorRepositorioParqueadero implements PuertoRepositorioParquea
 	}
 
 	@Override
-	public Cobro ingresarVehiculo(Cobro cobro) {
+	public Cobro ingresarYactualizarVehiculo(Cobro cobro) {
 		CobroEntidad cobroEntidad = repositorioParqueaderoJpa.save(mapeadorParqueadero.convertirAentidad(cobro));
 		return mapeadorParqueadero.convertirAdominio(cobroEntidad);
 	}
 
 	@Override
 	public Cobro buscarVehiculoPorPlaca(String placa) {
-		CobroEntidad cobroEntidad = repositorioParqueaderoJpa.findByPlaca(placa);
+		CobroEntidad cobroEntidad = repositorioParqueaderoJpa.buscarPorPlaca(placa);
 		return mapeadorParqueadero.convertirAdominio(cobroEntidad);
 	}
 }

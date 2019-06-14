@@ -15,11 +15,10 @@ public interface PuertoRepositorioParqueadero {
 	/**
 	 * Registra el ingreso de un vehículo al parqueadero.
 	 *
-	 * @param cobro Objeto que contiene la información del vehículo y la fecha de
-	 *              ingreso.
+	 * @param cobro Objeto que contiene la información del servicio prestado.
 	 * @return Cobro.
 	 */
-	Cobro ingresarVehiculo(Cobro cobro);
+	Cobro ingresarYactualizarVehiculo(Cobro cobro);
 
 	/**
 	 * Busca un vehiculo segun su placa.

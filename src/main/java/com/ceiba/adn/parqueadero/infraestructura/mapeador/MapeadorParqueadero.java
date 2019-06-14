@@ -20,13 +20,7 @@ public class MapeadorParqueadero {
 	}
 
 	public CobroEntidad convertirAentidad(Cobro cobro) {
-		CobroEntidad cobroEntidad;
-		if (cobro == null) {
-			cobroEntidad = null;
-		} else {
-			cobroEntidad = new CobroEntidad(cobro.getId(), cobro.getTipoVehiculo(), cobro.getPlaca(),
-					cobro.getCilindraje(), cobro.getFechaIngreso(), cobro.getFechaSalida(), cobro.getValor());
-		}
-		return cobroEntidad;
+		return new CobroEntidad(cobro.getId(), cobro.getTipoVehiculo(), cobro.getPlaca(), cobro.getCilindraje(),
+				cobro.getFechaIngreso(), cobro.getFechaSalida(), cobro.getValor());
 	}
 }

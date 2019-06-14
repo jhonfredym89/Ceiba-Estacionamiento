@@ -49,11 +49,6 @@ public class ParqueaderoTestDataBuilder {
 		return this;
 	}
 
-	public ParqueaderoTestDataBuilder conFechaSalida(Calendar fechaSalida) {
-		this.fechaSalida = fechaSalida;
-		return this;
-	}
-
 	public Cobro build() {
 		return new Cobro(this.id, this.tipoVehiculo, this.placa, this.cilindraje, this.fechaIngreso, this.fechaSalida,
 				0);

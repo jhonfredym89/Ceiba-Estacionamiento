@@ -1,6 +1,8 @@
 package com.ceiba.adn.parqueadero.infraestructura.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -22,12 +24,12 @@ public class ParqueaderoControlador {
 	}
 
 	@PostMapping("/ingreso")
-	public void ingresarVehiculo(@RequestBody CobroDto cobroDto) {
-		parqueaderoManejador.ingresarVehiculo(cobroDto);
+	public ResponseEntity<Integer> ingresarVehiculo(@RequestBody CobroDto cobroDto) {
+		return new ResponseEntity<>(parqueaderoManejador.ingresarVehiculo(cobroDto), HttpStatus.OK);
 	}
-	
+
 	@PutMapping("/retiro/{placa}")
-	public long retirarVehiculo(@PathVariable("placa") String placa) {
-		return parqueaderoManejador.retirarVehiculo(placa);
+	public ResponseEntity<Long> retirarVehiculo(@PathVariable("placa") String placa) {
+		return new ResponseEntity<>(parqueaderoManejador.retirarVehiculo(placa), HttpStatus.OK);
 	}
 }

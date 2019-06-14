@@ -13,11 +13,11 @@ public class ParqueaderoManejador {
 		this.servicioParqueadero = servicioParqueadero;
 	}
 
-	public void ingresarVehiculo(CobroDto cobroDto) {
-		servicioParqueadero.ingresarVehiculo(new Cobro(cobroDto.getTipoVehiculo(), cobroDto.getPlaca(),
-				cobroDto.getCilindraje(), Calendar.getInstance()));
+	public int ingresarVehiculo(CobroDto cobroDto) {
+		return servicioParqueadero.ingresarVehiculo(new Cobro(cobroDto.getTipoVehiculo(), cobroDto.getPlaca(),
+				cobroDto.getCilindraje(), Calendar.getInstance())).getId();
 	}
-	
+
 	public long retirarVehiculo(String placa) {
 		return servicioParqueadero.retirarVehiculo(placa);
 	}

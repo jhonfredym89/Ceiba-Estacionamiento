@@ -97,7 +97,7 @@ public class ServicioParqueaderoTest {
 		ParqueaderoTestDataBuilder parqueaderoTestDataBuilder = new ParqueaderoTestDataBuilder();
 		Cobro cobro = parqueaderoTestDataBuilder.build();
 		ServicioParqueadero servicioParqueadero = new ServicioParqueadero(repositorioParqueadero);
-		when(repositorioParqueadero.ingresarVehiculo(cobro)).thenReturn(cobro);
+		when(repositorioParqueadero.ingresarYactualizarVehiculo(cobro)).thenReturn(cobro);
 		// Act
 		Cobro c = servicioParqueadero.ingresarVehiculo(cobro);
 		// Assert
@@ -111,7 +111,7 @@ public class ServicioParqueaderoTest {
 				.conTipoVehiculo(TipoVehiculo.CARRO.getTipo());
 		Cobro cobro = parqueaderoTestDataBuilder.build();
 		ServicioParqueadero servicioParqueadero = new ServicioParqueadero(repositorioParqueadero);
-		when(repositorioParqueadero.ingresarVehiculo(cobro)).thenReturn(cobro);
+		when(repositorioParqueadero.ingresarYactualizarVehiculo(cobro)).thenReturn(cobro);
 		// Act
 		Cobro c = servicioParqueadero.ingresarVehiculo(cobro);
 		// Assert

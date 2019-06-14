@@ -1,0 +1,1 @@
+insert into cobro (id, tipo_vehiculo, placa, cilindraje, fecha_ingreso, valor) values (999, 'moto', 'ABC-123', 650, '2019-06-01T10:25:00', 0)
