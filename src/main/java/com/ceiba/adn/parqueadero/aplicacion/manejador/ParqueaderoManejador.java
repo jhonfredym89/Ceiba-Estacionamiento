@@ -1,6 +1,6 @@
 package com.ceiba.adn.parqueadero.aplicacion.manejador;
 
-import java.time.LocalDate;
+import java.util.Calendar;
 
 import com.ceiba.adn.parqueadero.aplicacion.dto.CobroDto;
 import com.ceiba.adn.parqueadero.dominio.modelo.Cobro;
@@ -14,7 +14,11 @@ public class ParqueaderoManejador {
 	}
 
 	public void ingresarVehiculo(CobroDto cobroDto) {
-		servicioParqueadero.ingresarVehiculo(
-				new Cobro(cobroDto.getTipoVehiculo(), cobroDto.getPlaca(), cobroDto.getCilindraje(), LocalDate.now()));
+		servicioParqueadero.ingresarVehiculo(new Cobro(cobroDto.getTipoVehiculo(), cobroDto.getPlaca(),
+				cobroDto.getCilindraje(), Calendar.getInstance()));
+	}
+	
+	public long retirarVehiculo(String placa) {
+		return servicioParqueadero.retirarVehiculo(placa);
 	}
 }

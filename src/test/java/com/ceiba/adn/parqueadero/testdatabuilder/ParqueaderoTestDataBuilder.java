@@ -1,31 +1,32 @@
 package com.ceiba.adn.parqueadero.testdatabuilder;
 
-import java.time.LocalDate;
+import java.util.Calendar;
 
 import com.ceiba.adn.parqueadero.dominio.modelo.Cobro;
+import com.ceiba.adn.parqueadero.dominio.modelo.TipoVehiculo;
 
 public class ParqueaderoTestDataBuilder {
 	private static final int IDENTIFICADOR = 1;
-	private static final String TIPO_VEHICULO = "moto";
+	private static final String TIPO_VEHICULO = TipoVehiculo.MOTO.getTipo();
 	private static final String PLACA_VEHICULO = "BCD-123";
-	private static final int CILINDRAJE_VEHICULO = 650;
-	private static final LocalDate FECHA_INGRESO = LocalDate.now();
-	private static final LocalDate FECHA_SALIDA = null;
+	private static final int CILINDRAJE_VEHICULO = 250;
 
 	private int id;
 	private String tipoVehiculo;
 	private String placa;
 	private int cilindraje;
-	private LocalDate fechaIngreso;
-	private LocalDate fechaSalida;
+	private Calendar fechaIngreso;
+	private Calendar fechaSalida;
 
 	public ParqueaderoTestDataBuilder() {
 		id = IDENTIFICADOR;
 		tipoVehiculo = TIPO_VEHICULO;
 		placa = PLACA_VEHICULO;
 		cilindraje = CILINDRAJE_VEHICULO;
-		fechaIngreso = FECHA_INGRESO;
-		fechaSalida = FECHA_SALIDA;
+		fechaIngreso = Calendar.getInstance();
+		fechaIngreso.add(Calendar.HOUR, -6);
+		fechaIngreso.add(Calendar.MINUTE, 6);
+		fechaSalida = Calendar.getInstance();
 	}
 
 	public ParqueaderoTestDataBuilder conTipoVehiculo(String tipoVehiculo) {
@@ -43,12 +44,12 @@ public class ParqueaderoTestDataBuilder {
 		return this;
 	}
 
-	public ParqueaderoTestDataBuilder conFechaIngreso(LocalDate fechaIngreso) {
+	public ParqueaderoTestDataBuilder conFechaIngreso(Calendar fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 		return this;
 	}
 
-	public ParqueaderoTestDataBuilder conFechaSalida(LocalDate fechaSalida) {
+	public ParqueaderoTestDataBuilder conFechaSalida(Calendar fechaSalida) {
 		this.fechaSalida = fechaSalida;
 		return this;
 	}

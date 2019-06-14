@@ -4,16 +4,18 @@ import java.util.Calendar;
 
 import com.ceiba.adn.parqueadero.dominio.excepcion.ExcepcionParqueadero;
 import com.ceiba.adn.parqueadero.dominio.modelo.Cobro;
+import com.ceiba.adn.parqueadero.dominio.modelo.TipoVehiculo;
 import com.ceiba.adn.parqueadero.dominio.puerto.PuertoRepositorioParqueadero;
+import com.ceiba.adn.parqueadero.dominio.servicio.fabrica.CobroParqueadero;
+import com.ceiba.adn.parqueadero.dominio.servicio.fabrica.ParqueaderoFabrica;
 
 public class ServicioParqueadero {
 	private static final String LETRA_DE_PLACA_CON_RESTRICCION = "A";
 	private static final String MENSAJE_INGRESO_NO_AUTORIZADO = "El vehiculo no puede ingresar el dia de hoy";
 	private static final String MENSAJE_NO_HAY_CUPO = "En el momento no hay cupo para el vehiculo";
+	private static final String MENSAJE_VEHICULO_NO_EXISTE = "El vehiculo no se encuentra dentro del parqueadero";
 	private static final int MAXIMO_MOTOS = 10;
 	private static final int MAXIMO_CARROS = 20;
-	private static final String TIPO_VEHICULO_MOTO = "moto";
-	private static final String TIPO_VEHICULO_CARRO = "carro";
 
 	private PuertoRepositorioParqueadero repositorioParqueadero;
 
@@ -22,15 +24,14 @@ public class ServicioParqueadero {
 	}
 
 	public Cobro ingresarVehiculo(Cobro cobro) {
-		validarIngresoPorPlaca(cobro.getPlaca());
+		validarIngresoPorPlacaYfecha(cobro.getPlaca(), cobro.getFechaIngreso());
 		validarCantidadVehiculosPorTipo(cobro.getTipoVehiculo());
 		return repositorioParqueadero.ingresarVehiculo(cobro);
 	}
 
-	private void validarIngresoPorPlaca(String placa) {
-		Calendar hoy = Calendar.getInstance();
-
-		if (hoy.get(Calendar.DAY_OF_WEEK) > Calendar.MONDAY && placa.startsWith(LETRA_DE_PLACA_CON_RESTRICCION)) {
+	private void validarIngresoPorPlacaYfecha(String placa, Calendar fechaIngreso) {
+		if (placa.startsWith(LETRA_DE_PLACA_CON_RESTRICCION)
+				&& fechaIngreso.get(Calendar.DAY_OF_WEEK) > Calendar.MONDAY) {
 			throw new ExcepcionParqueadero(MENSAJE_INGRESO_NO_AUTORIZADO);
 		}
 	}
@@ -38,9 +39,23 @@ public class ServicioParqueadero {
 	private void validarCantidadVehiculosPorTipo(String tipoVehiculo) {
 		int cantidad = repositorioParqueadero.contarVehiculosPorTipo(tipoVehiculo);
 
-		if ((tipoVehiculo.equals(TIPO_VEHICULO_MOTO) && cantidad == MAXIMO_MOTOS)
-				|| (tipoVehiculo.equals(TIPO_VEHICULO_CARRO) && cantidad == MAXIMO_CARROS)) {
+		if ((tipoVehiculo.equals(TipoVehiculo.MOTO.getTipo()) && cantidad == MAXIMO_MOTOS)
+				|| (tipoVehiculo.equals(TipoVehiculo.CARRO.getTipo()) && cantidad == MAXIMO_CARROS)) {
 			throw new ExcepcionParqueadero(MENSAJE_NO_HAY_CUPO);
 		}
+	}
+
+	public long retirarVehiculo(final String placa) {
+		Cobro cobro = repositorioParqueadero.buscarVehiculoPorPlaca(placa);
+		CobroParqueadero cobroParqueadero;
+
+		if (cobro == null) {
+			throw new ExcepcionParqueadero(MENSAJE_VEHICULO_NO_EXISTE);
+		}
+		cobro.setFechaSalida(Calendar.getInstance());
+		cobroParqueadero = ParqueaderoFabrica.obtenerInstancia().obtenerTipoVehiculo(cobro.getTipoVehiculo());
+		cobroParqueadero.cobrar(cobro);
+
+		return cobro.getValor();
 	}
 }

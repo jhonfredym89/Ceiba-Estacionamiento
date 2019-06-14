@@ -9,4 +9,6 @@ import com.ceiba.adn.parqueadero.infraestructura.entidad.CobroEntidad;
 public interface RepositorioParqueaderoJpa extends CrudRepository<CobroEntidad, Integer> {
 	@Query("SELECT COUNT(*) FROM CobroEntidad c WHERE c.tipoVehiculo = :tipoVehiculo AND c.fechaSalida IS NULL")
 	int contarVehiculosPorTipo(@Param("tipoVehiculo") String tipoVehiculo);
+
+	CobroEntidad findByPlaca(String placa);
 }

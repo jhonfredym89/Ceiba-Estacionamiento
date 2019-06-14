@@ -1,6 +1,6 @@
 package com.ceiba.adn.parqueadero.infraestructura.entidad;
 
-import java.time.LocalDate;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,9 +30,9 @@ public class CobroEntidad {
 	@Column
 	private int cilindraje;
 	@Column
-	private LocalDate fechaIngreso;
+	private Calendar fechaIngreso;
 	@Column
-	private LocalDate fechaSalida;
+	private Calendar fechaSalida;
 	@Column
-	private double valor;
+	private long valor;
 }

@@ -3,9 +3,10 @@ package com.ceiba.adn.parqueadero.testdatabuilder;
 import java.util.Calendar;
 
 import com.ceiba.adn.parqueadero.aplicacion.dto.CobroDto;
+import com.ceiba.adn.parqueadero.dominio.modelo.TipoVehiculo;
 
 public class ParqueaderoControladorTestDataBuilder {
-	private static final String TIPO_VEHICULO = "moto";
+	private static final String TIPO_VEHICULO = TipoVehiculo.MOTO.getTipo();
 	private static final String PLACA_VEHICULO = "BCD-123";
 	private static final int CILINDRAJE_VEHICULO = 650;
 

@@ -20,4 +20,12 @@ public interface PuertoRepositorioParqueadero {
 	 * @return Cobro.
 	 */
 	Cobro ingresarVehiculo(Cobro cobro);
+
+	/**
+	 * Busca un vehiculo segun su placa.
+	 * 
+	 * @param placa Número de placa del vehiculo.
+	 * @return Cobro.
+	 */
+	Cobro buscarVehiculoPorPlaca(final String placa);
 }

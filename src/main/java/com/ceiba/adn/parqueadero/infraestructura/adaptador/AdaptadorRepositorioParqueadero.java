@@ -1,6 +1,6 @@
 package com.ceiba.adn.parqueadero.infraestructura.adaptador;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.ceiba.adn.parqueadero.dominio.modelo.Cobro;
 import com.ceiba.adn.parqueadero.dominio.puerto.PuertoRepositorioParqueadero;
@@ -8,7 +8,7 @@ import com.ceiba.adn.parqueadero.infraestructura.entidad.CobroEntidad;
 import com.ceiba.adn.parqueadero.infraestructura.mapeador.MapeadorParqueadero;
 import com.ceiba.adn.parqueadero.infraestructura.repositorio.RepositorioParqueaderoJpa;
 
-@Component
+@Repository
 public class AdaptadorRepositorioParqueadero implements PuertoRepositorioParqueadero {
 
 	private RepositorioParqueaderoJpa repositorioParqueaderoJpa;
@@ -31,4 +31,9 @@ public class AdaptadorRepositorioParqueadero implements PuertoRepositorioParquea
 		return mapeadorParqueadero.convertirAdominio(cobroEntidad);
 	}
 
+	@Override
+	public Cobro buscarVehiculoPorPlaca(String placa) {
+		CobroEntidad cobroEntidad = repositorioParqueaderoJpa.findByPlaca(placa);
+		return mapeadorParqueadero.convertirAdominio(cobroEntidad);
+	}
 }
