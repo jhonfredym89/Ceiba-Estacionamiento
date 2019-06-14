@@ -69,7 +69,7 @@ public class ParqueaderoControladorTest {
 		// Arrange
 		String placa = "ZZZ-111";
 		// Act y Assert
-		mockMvc.perform(put("/parqueadero/retiro/0").contentType(MediaType.APPLICATION_JSON).content(placa))
+		mockMvc.perform(put("/parqueadero/retiro/" + placa).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());
 	}
 
@@ -78,7 +78,7 @@ public class ParqueaderoControladorTest {
 		// Arrange
 		String placa = "ABC-123";
 		// Act y Assert
-		mockMvc.perform(put("/parqueadero/retiro/ABC-123").contentType(MediaType.APPLICATION_JSON).content(placa))
+		mockMvc.perform(put("/parqueadero/retiro/" + placa).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
 	}
 }
