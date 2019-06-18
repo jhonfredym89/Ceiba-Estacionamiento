@@ -1,5 +1,7 @@
 package com.ceiba.adn.parqueadero.dominio.puerto;
 
+import java.util.List;
+
 import com.ceiba.adn.parqueadero.dominio.modelo.Cobro;
 
 public interface PuertoRepositorioParqueadero {
@@ -27,4 +29,6 @@ public interface PuertoRepositorioParqueadero {
 	 * @return Cobro.
 	 */
 	Cobro buscarVehiculoPorPlaca(final String placa);
+	
+	List<Cobro> listarVehiculos();
 }

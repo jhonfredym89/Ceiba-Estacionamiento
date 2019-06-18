@@ -1,6 +1,7 @@
 package com.ceiba.adn.parqueadero.dominio.servicio;
 
 import java.util.Calendar;
+import java.util.List;
 
 import com.ceiba.adn.parqueadero.dominio.excepcion.ExcepcionParqueadero;
 import com.ceiba.adn.parqueadero.dominio.modelo.Cobro;
@@ -30,7 +31,7 @@ public class ServicioParqueadero {
 	}
 
 	private void validarIngresoPorPlacaYfecha(String placa, Calendar fechaIngreso) {
-		if (placa.startsWith(LETRA_DE_PLACA_CON_RESTRICCION)
+		if (placa.toUpperCase().startsWith(LETRA_DE_PLACA_CON_RESTRICCION)
 				&& fechaIngreso.get(Calendar.DAY_OF_WEEK) > Calendar.MONDAY) {
 			throw new ExcepcionParqueadero(MENSAJE_INGRESO_NO_AUTORIZADO);
 		}
@@ -39,8 +40,8 @@ public class ServicioParqueadero {
 	private void validarCantidadVehiculosPorTipo(String tipoVehiculo) {
 		int cantidad = repositorioParqueadero.contarVehiculosPorTipo(tipoVehiculo);
 
-		if ((tipoVehiculo.equals(TipoVehiculo.MOTO.getTipo()) && cantidad == MAXIMO_MOTOS)
-				|| (tipoVehiculo.equals(TipoVehiculo.CARRO.getTipo()) && cantidad == MAXIMO_CARROS)) {
+		if ((tipoVehiculo.equalsIgnoreCase(TipoVehiculo.MOTO.getTipo()) && cantidad == MAXIMO_MOTOS)
+				|| (tipoVehiculo.equalsIgnoreCase(TipoVehiculo.CARRO.getTipo()) && cantidad == MAXIMO_CARROS)) {
 			throw new ExcepcionParqueadero(MENSAJE_NO_HAY_CUPO);
 		}
 	}
@@ -62,5 +63,9 @@ public class ServicioParqueadero {
 		cobro.setFechaSalida(Calendar.getInstance());
 		cobroParqueadero = ParqueaderoFabrica.obtenerInstancia().obtenerTipoVehiculo(cobro.getTipoVehiculo());
 		cobroParqueadero.cobrar(cobro);
+	}
+	
+	public List<Cobro> listarVehiculos() {
+		return repositorioParqueadero.listarVehiculos();
 	}
 }

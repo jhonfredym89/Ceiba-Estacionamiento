@@ -1,5 +1,7 @@
 package com.ceiba.adn.parqueadero.infraestructura.adaptador;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.ceiba.adn.parqueadero.dominio.modelo.Cobro;
@@ -35,5 +37,11 @@ public class AdaptadorRepositorioParqueadero implements PuertoRepositorioParquea
 	public Cobro buscarVehiculoPorPlaca(String placa) {
 		CobroEntidad cobroEntidad = repositorioParqueaderoJpa.buscarPorPlaca(placa);
 		return mapeadorParqueadero.convertirAdominio(cobroEntidad);
+	}
+
+	@Override
+	public List<Cobro> listarVehiculos() {
+		final List<CobroEntidad> listaCobroEntidad = repositorioParqueaderoJpa.listarTodos();
+		return mapeadorParqueadero.convertirAlistaDominio(listaCobroEntidad);
 	}
 }

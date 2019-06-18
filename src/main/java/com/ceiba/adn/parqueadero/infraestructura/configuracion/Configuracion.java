@@ -9,7 +9,7 @@ import com.ceiba.adn.parqueadero.dominio.servicio.ServicioParqueadero;
 
 @Configuration
 public class Configuracion {
-	
+
 	@Bean
 	public ServicioParqueadero servicioParqueadero(PuertoRepositorioParqueadero puertoRepositorioParqueadero) {
 		return new ServicioParqueadero(puertoRepositorioParqueadero);

@@ -1,5 +1,6 @@
 package com.ceiba.adn.parqueadero.infraestructura.test.integracion;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -80,5 +81,11 @@ public class ParqueaderoControladorTest {
 		// Act y Assert
 		mockMvc.perform(put("/parqueadero/retiro/" + placa).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
+	}
+
+	@Test
+	public void listarVehiculosTest() throws Exception {
+		// Act y Assert
+		mockMvc.perform(get("/parqueadero/listar").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 	}
 }
