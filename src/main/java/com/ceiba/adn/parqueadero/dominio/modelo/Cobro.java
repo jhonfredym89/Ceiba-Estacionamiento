@@ -2,7 +2,13 @@ package com.ceiba.adn.parqueadero.dominio.modelo;
 
 import java.util.Calendar;
 
+import com.ceiba.adn.parqueadero.comun.ValidadorArgumento;
+
 public class Cobro {
+	private static final String TIPO_VEHICULO_OBLIGATORIO = "Se debe seleccionar el tipo de vehiculo";
+	private static final String PLACA_OBLIGATORIA = "Se debe ingresar la placa del vehiculo";
+	private static final String CILINDRAJE_OBLIGATORIO = "Se debe ingresar el cilindraje del vehiculo";
+
 	private int id;
 	private String tipoVehiculo;
 	private String placa;
@@ -24,7 +30,10 @@ public class Cobro {
 	}
 
 	public Cobro(String tipoVehiculo, String placa, int cilindraje, Calendar fechaIngreso) {
-		super();
+		ValidadorArgumento.validarObligatorio(tipoVehiculo, TIPO_VEHICULO_OBLIGATORIO);
+		ValidadorArgumento.validarObligatorio(placa, PLACA_OBLIGATORIA);
+		ValidadorArgumento.validarObligatorio(cilindraje, CILINDRAJE_OBLIGATORIO);
+
 		this.tipoVehiculo = tipoVehiculo;
 		this.placa = placa;
 		this.cilindraje = cilindraje;

@@ -3,6 +3,7 @@ package com.ceiba.adn.parqueadero.infraestructura.test.integracion;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Calendar;
@@ -45,7 +46,8 @@ public class ParqueaderoControladorTest {
 		CobroDto cobroDto = parqueaderoTestDataBuilder.build();
 		// Act y Assert
 		mockMvc.perform(post("/parqueadero/ingreso").contentType(MediaType.APPLICATION_JSON)
-				.content(pasarJsonAstring(cobroDto))).andExpect(status().isOk());
+				.content(pasarJsonAstring(cobroDto))).andExpect(status().isOk())
+				.andExpect(content().json("{'valor': 1}"));
 	}
 
 	@Test

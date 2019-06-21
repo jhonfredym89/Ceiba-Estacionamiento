@@ -36,7 +36,7 @@ public class ParqueaderoControlador {
 	}
 
 	@PutMapping("/retiro/{placa}")
-	public ResponseEntity<Long> retirarVehiculo(@PathVariable("placa") String placa) {
+	public ResponseEntity<Respuesta<Long>> retirarVehiculo(@PathVariable("placa") String placa) {
 		return new ResponseEntity<>(parqueaderoManejador.retirarVehiculo(placa), HttpStatus.OK);
 	}
 	
