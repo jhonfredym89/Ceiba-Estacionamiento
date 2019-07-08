@@ -45,7 +45,7 @@ public class ParqueaderoControladorTest {
 		ParqueaderoControladorTestDataBuilder parqueaderoTestDataBuilder = new ParqueaderoControladorTestDataBuilder();
 		CobroDto cobroDto = parqueaderoTestDataBuilder.build();
 		// Act y Assert
-		mockMvc.perform(post("/parqueadero/ingreso").contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(post("/api/parqueadero/ingreso").contentType(MediaType.APPLICATION_JSON)
 				.content(pasarJsonAstring(cobroDto))).andExpect(status().isOk())
 				.andExpect(content().json("{'valor': 1}"));
 	}
@@ -59,7 +59,7 @@ public class ParqueaderoControladorTest {
 				.conPlaca("ABC-123").conFechaIngreso(fechaIngreso);
 		CobroDto cobroDto = parqueaderoTestDataBuilder.build();
 		// Act y Assert
-		mockMvc.perform(post("/parqueadero/ingreso").contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(post("/api/parqueadero/ingreso").contentType(MediaType.APPLICATION_JSON)
 				.content(pasarJsonAstring(cobroDto))).andExpect(status().isBadRequest());
 	}
 
@@ -72,7 +72,7 @@ public class ParqueaderoControladorTest {
 		// Arrange
 		String placa = "ZZZ-111";
 		// Act y Assert
-		mockMvc.perform(put("/parqueadero/retiro/" + placa).contentType(MediaType.APPLICATION_JSON))
+		mockMvc.perform(put("/api/parqueadero/retiro/" + placa).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());
 	}
 
@@ -81,13 +81,13 @@ public class ParqueaderoControladorTest {
 		// Arrange
 		String placa = "ABC-123";
 		// Act y Assert
-		mockMvc.perform(put("/parqueadero/retiro/" + placa).contentType(MediaType.APPLICATION_JSON))
+		mockMvc.perform(put("/api/parqueadero/retiro/" + placa).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
 	}
 
 	@Test
 	public void listarVehiculosTest() throws Exception {
 		// Act y Assert
-		mockMvc.perform(get("/parqueadero/listar").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+		mockMvc.perform(get("/api/parqueadero/listar").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 	}
 }

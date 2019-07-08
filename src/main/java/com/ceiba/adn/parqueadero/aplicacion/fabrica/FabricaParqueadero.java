@@ -12,7 +12,7 @@ public class FabricaParqueadero {
 
 	public static Cobro crearCobro(final CobroDto cobroDto) {
 		return new Cobro(cobroDto.getTipoVehiculo(), cobroDto.getPlaca(), cobroDto.getCilindraje(),
-				Calendar.getInstance());
+				cobroDto.getFechaIngreso() == null ? Calendar.getInstance() : cobroDto.getFechaIngreso());
 	}
 
 	public static RespuestaDto crearRespuesta(final Cobro cobro) {
