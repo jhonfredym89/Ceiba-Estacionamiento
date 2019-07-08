@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,8 +19,7 @@ import com.ceiba.adn.parqueadero.aplicacion.dto.RespuestaDto;
 import com.ceiba.adn.parqueadero.aplicacion.manejador.ParqueaderoManejador;
 
 @RestController
-@RequestMapping("/parqueadero")
-@CrossOrigin("*")
+@RequestMapping("/api/parqueadero")
 public class ParqueaderoControlador {
 	private ParqueaderoManejador parqueaderoManejador;
 
@@ -39,7 +37,7 @@ public class ParqueaderoControlador {
 	public ResponseEntity<Respuesta<Long>> retirarVehiculo(@PathVariable("placa") String placa) {
 		return new ResponseEntity<>(parqueaderoManejador.retirarVehiculo(placa), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/listar")
 	public ResponseEntity<List<RespuestaDto>> listar() {
 		return new ResponseEntity<>(this.parqueaderoManejador.listarVehiculos(), HttpStatus.OK);
