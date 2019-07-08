@@ -6,7 +6,7 @@ import com.ceiba.adn.parqueadero.aplicacion.dto.CobroDto;
 import com.ceiba.adn.parqueadero.aplicacion.dto.RespuestaDto;
 import com.ceiba.adn.parqueadero.dominio.modelo.Cobro;
 
-public class FabricaParqueadero {
+public final class FabricaParqueadero {
 	private FabricaParqueadero() {
 	}
 

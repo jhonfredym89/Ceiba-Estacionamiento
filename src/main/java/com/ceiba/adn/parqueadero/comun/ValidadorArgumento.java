@@ -2,7 +2,7 @@ package com.ceiba.adn.parqueadero.comun;
 
 import com.ceiba.adn.parqueadero.dominio.excepcion.ExcepcionParqueadero;
 
-public class ValidadorArgumento {
+public final class ValidadorArgumento {
 	private ValidadorArgumento() {
 	}
 
